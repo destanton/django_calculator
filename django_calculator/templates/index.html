@@ -17,14 +17,17 @@
   <body>
     <div class="container">
       <h1>Math Calculator</h1>
-      <form class="" action="" method="post">
+      <form class="" action="" method="get">
         {% csrf_token %}
         <div class="">
-          <textarea class="num_input" rows="3" class="form_control" placeholder="Enter a value"></textarea>
+          <!-- <textarea class="num_input" rows="3" class="form_control" placeholder="Enter a value" type="number"></textarea> -->
+
+          <input type="number" class="form-control" placeholder="Enter Number" name="num_input">
         </div>
 
+            <!-- {{ data }} {{ x }} -->
         <div class="">
-          <select name="carlist" form="carform">
+          <select name="operator">
             <option value="Add">Add</option>
             <option value="Subtract">Subtract</option>
             <option value="Multiply">Multiply</option>
@@ -33,7 +36,8 @@
         </div>
           <br>
         <div class="">
-          <textarea class="num_input" rows="3" class="form_control" placeholder="Enter a value"></textarea>
+          <input type="number" class="form-control" placeholder="Enter Number" name="num_input2">
+          <!-- <textarea class="num_input2" rows="3" class="form_control" placeholder="Enter a value" type="number"></textarea> -->
         </div>
         <div class="">
           <input class="btn btn-default" type="submit" value="Submit">
@@ -42,7 +46,8 @@
 
 
       </form>
-    </div>
 
+    </div>
+    {{ output }}
   </body>
 </html>
