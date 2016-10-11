@@ -28,10 +28,10 @@
             <!-- {{ data }} {{ x }} -->
         <div class="">
           <select name="operator">
-            <option value="Add">Add</option>
-            <option value="Subtract">Subtract</option>
-            <option value="Multiply">Multiply</option>
-            <option value="Divide">Divide</option>
+            <option value="+">+</option>
+            <option value="-">-</option>
+            <option value="&times;">&times;</option>
+            <option value="&divide;">&divide;</option>
           </select>
         </div>
           <br>
@@ -48,6 +48,6 @@
       </form>
 
     </div>
-    {{ output }}
+    <h2>Answer: {{ num }} {{ oper }} {{ num2 }} = {{ output }}</h2>
   </body>
 </html>
