@@ -2,10 +2,10 @@ from django.db import models
 
 
 OPERATORS = [
-    ('+', 'Addition'),
-    ('-', 'Subract'),
-    ('*', 'Multiply'),
-    ('/', 'Divide')
+    ('+', '+'),
+    ('-', '-'),
+    ('*', '*'),
+    ('/', '/')
 ]
 
 
@@ -15,6 +15,7 @@ class Operation(models.Model):
     num_1 = models.SmallIntegerField()
     operator = models.CharField(max_length=1, choices=OPERATORS)
     num_2 = models.SmallIntegerField()
+    answer = models.SmallIntegerField()
 
     def __str__(self):
         return self.created_by.username

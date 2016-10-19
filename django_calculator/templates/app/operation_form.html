@@ -6,4 +6,9 @@
   {{form.as_p}}
 <input type="submit" name="" value="Enter">
 </form>
+
+{% for answer in operation %}
+{{ answer.created }}
+
+{% endfor %}
 {% endblock %}
