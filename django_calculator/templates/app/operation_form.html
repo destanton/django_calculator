@@ -5,7 +5,9 @@
   <div class="panel panel-default">
     <div class="panel-heading">
       {% if request.user.is_authenticated %}
-      <a href="{% url 'profile_view' request.user.id %}">Profile</a>
+      <button type="button" class="btn btn-default btn-xs"><a href="{% url 'profile_view' request.user.id %}">Profile</a></button>
+      <button type="button" class="btn btn-default btn-xs"><a href="{% url 'profile_create_view' request.user.id %}">Edit Access</a></button>
+      <ul></ul>
         <form class="" action="" method="post">
           {% csrf_token %}
           {{ form.as_p }}
