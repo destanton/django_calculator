@@ -57,12 +57,23 @@ class ProfileCreateView(CreateView):
     success_url = "/"
     fields = ('access_level', )
 
-    # def get_context_data(self, **kwargs):
-    #     context = super().get_context_data(**kwargs)
-    #     context["operation_detail"] = Operation.objects.all()
-    #     return context
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["operation_detail"] = Operation.objects.all()
+        return context
 
     def get_queryset(self):
         if self.request.user.profile.user.id:
             return Operation.objects.all()
         return Operation.objects.filter(created_by=self.request.user)
+
+
+    def form_valid(self, form):
+        # try:
+        #     Profile.objects.get(user=self.request.user, access_level=self.kwargs['pk'])
+        # except ValueError:
+        #     pass
+        instance = form.save(commit=False)
+        instance.user = self.request.user
+        instance.access_level = Profile.objects.get(id=self.kwargs['pk'])
+        return super().form_valid(form)
