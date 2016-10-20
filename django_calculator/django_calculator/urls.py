@@ -15,12 +15,14 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
-from app.views import CreateView, UserCreateView
+from app.views import OperationCreateView, UserCreateView, ProfileDetailView, ProfileCreateView
 
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^$', CreateView.as_view(), name="create_view"),
+    url(r'^$', OperationCreateView.as_view(), name="operation_create_view"),
     url(r'^', include('django.contrib.auth.urls')),
-    url(r'^create_user/$', UserCreateView.as_view(), name="user_create_view")
+    url(r'^create_user/$', UserCreateView.as_view(), name="user_create_view"),
+    url(r'^accounts/profile/(?P<pk>\d+)/$', ProfileDetailView.as_view(), name="profile_view"),
+    url(r'^create_profile/(?P<pk>\d+)/$', ProfileCreateView.as_view(), name="profile_create_view")
 ]

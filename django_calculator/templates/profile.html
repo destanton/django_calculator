@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+  <h1>This is {{request.user}}'s Profile Page</h1>
+  {% csrf_token %}
+  {% for profile in profile %}
+  <br>
+  {{ profile.get_answer }}
+  {% endfor %}
+</form>
+{% endblock %}

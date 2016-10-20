@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<!-- {{ request.user }} -->
+<h3>Your Equations</h3>
+
+{% for answer in operation_detail %}
+  {% if request.user == answer.created_by or request.user.profile.is_owner %}
+  <br>
+    {{ answer.get_answer }} by: {{answer.created_by}}
+  {% endif %}
+{% endfor %}
+{% endblock %}

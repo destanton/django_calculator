@@ -1,14 +1,28 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<form class="" action="" method="post">
-  {% csrf_token %}
-  {{form.as_p}}
-<input type="submit" name="" value="Enter">
-</form>
+{% if request.user.is_authenticated %}
+<a href="{% url 'profile_view' request.user.id %}">Profile</a>
 
-{% for answer in operation %}
-{{ answer.created }}
+  <form class="" action="" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+  <input type="submit" name="" value="Enter">
+  </form>
+  {% for answer in operation %}
+    {% if request.user == answer.created_by or request.user.profile.is_owner %}
 
-{% endfor %}
+    <br>
+    {{answer.num_1}} {{answer.operator}} {{answer.num_2}} = {{answer.answer}}
+    <!-- {{ answer.get_answer }} -->
+
+    {% endif %}
+    {% endfor %}
+{% else %}
+
+<h1>Please login </h1>
+{% endif %}
+
+
+
 {% endblock %}
