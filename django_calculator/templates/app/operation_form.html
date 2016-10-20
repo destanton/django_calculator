@@ -23,11 +23,11 @@
       {% for answer in operation %}
         {% if request.user == answer.created_by or request.user.profile.is_owner %}
 
-        {{answer.num_1}} {{answer.operator}} {{answer.num_2}} = {{answer.answer}}  by:{{answer.created_by}}<br>
+        {{answer.num_1}} {{answer.operator}} {{answer.num_2}} = {{answer.answer}} &nbsp;  by:{{answer.created_by}}<br>
         <br>
         {% endif %}
         {% endfor %}
-
+    </div>
     </div>
   </div>
 </div>

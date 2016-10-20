@@ -5,11 +5,13 @@
     <h2>Your Equations</h2>
     <hr>
     <div class="panel panel-default">
-      <div class="panel-heading"></div>
+      <div class="panel-heading">
+        <button type="button" class="btn btn-default btn-xs"><a href="{% url 'operation_create_view' %}">back</a></button>
+      </div>
       <div class="panel-body">
   {% for answer in operation_detail %}
     {% if request.user == answer.created_by or request.user.profile.is_owner %}
-      {{ answer.get_answer }} by: {{answer.created_by}} <br>
+      {{ answer.get_answer }} &nbsp; by: {{answer.created_by}} <br>
       <br>
     {% endif %}
   {% endfor %}
