@@ -39,12 +39,12 @@ ACCESS_LEVEL = [
 ]
 
 
-# @receiver(post_save, sender='auth.User')
-# def create_user_profile(**kwargs):
-#     created = kwargs.get('created')
-#     instance = kwargs.get('instance')
-#     if created:
-#         Profile.objects.create(user=instance)
+@receiver(post_save, sender='auth.User')
+def create_user_profile(**kwargs):
+    created = kwargs.get('created')
+    instance = kwargs.get('instance')
+    if created:
+        Profile.objects.create(user=instance)
 
 
 class Profile(models.Model):
