@@ -14,10 +14,10 @@ OPERATORS = [
 class Operation(models.Model):
     created_by = models.ForeignKey('auth.User')
     created = models.DateTimeField(auto_now_add=True)
-    num_1 = models.SmallIntegerField()
+    num_1 = models.FloatField()
     operator = models.CharField(max_length=1, choices=OPERATORS, default='+')
-    num_2 = models.SmallIntegerField()
-    answer = models.SmallIntegerField()
+    num_2 = models.FloatField()
+    answer = models.FloatField()
 
     def __str__(self):
         return self.created_by.username
