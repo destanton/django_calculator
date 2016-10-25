@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from django.views.generic.edit import UpdateView, DeleteView
 from app.models import Operation, Profile
+from django.urls import reverse_lazy
 
 
 class UserCreateView(CreateView):
@@ -52,28 +53,13 @@ class ProfileDetailView(DetailView):
         return Operation.objects.filter(created_by=self.request.user)
 
 
-class ProfileCreateView(CreateView):
+class ProfileUpdateView(UpdateView):
     model = Profile
-    success_url = "/"
+    success_url = reverse_lazy('operation_create_view')
     fields = ('access_level', )
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context["operation_detail"] = Operation.objects.all()
-        return context
+    def get_object(self):
+        return Profile.objects.get(user=self.request.user)
 
-    def get_queryset(self):
-        if self.request.user.profile.user.id:
-            return Operation.objects.all()
-        return Operation.objects.filter(created_by=self.request.user)
-
-
-    def form_valid(self, form):
-        # try:
-        #     Profile.objects.get(user=self.request.user, access_level=self.kwargs['pk'])
-        # except ValueError:
-        #     pass
-        instance = form.save(commit=False)
-        instance.user = self.request.user
-        instance.access_level = Profile.objects.get(id=self.kwargs['pk'])
-        return super().form_valid(form)
+    # def get_success_url(self, **kwargs):
+    #     return reverse_lazy('profile_update_view', args=[int(self.kwargs['pk'])])
